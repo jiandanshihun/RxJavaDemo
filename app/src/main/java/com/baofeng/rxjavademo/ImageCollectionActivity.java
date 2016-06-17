@@ -8,6 +8,7 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.widget.ExpandableListView;
 
+import com.baofeng.rxjavademo.adapter.ImgCollectionAdapter;
 import com.baofeng.rxjavademo.bean.ImgFolderItem;
 import com.baofeng.rxjavademo.bean.ImgItem;
 import com.socks.library.KLog;
@@ -30,6 +31,8 @@ public class ImageCollectionActivity extends Activity {
 
     private ArrayList<ImgFolderItem> list = new ArrayList<>();
 
+    private ImgCollectionAdapter adapter = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +45,9 @@ public class ImageCollectionActivity extends Activity {
         getImgsThead.start();
     }
 
+    private void getImagePathWithRxJava(){
+
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -61,6 +67,19 @@ public class ImageCollectionActivity extends Activity {
                     KLog.a("jiandanshihun", "Img path is " + img.getLocalPath());
                 }
             }
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    adapter = new ImgCollectionAdapter(list, ImageCollectionActivity.this);
+                    gridImgCollection.setAdapter(adapter);
+                    gridImgCollection.setOnGroupClickListener(null);
+
+                    for (int i = 0; i < adapter.getGroupCount(); i++) {
+                        gridImgCollection.expandGroup(i);
+                    }
+                }
+            });
         }
     };
 
