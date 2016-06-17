@@ -2,13 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <GridView android:id="@+id/grid_img_collection"
+    <ExpandableListView android:id="@+id/grid_img_collection"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="15dp"
-        android:numColumns="4"
-        android:stretchMode="columnWidth"
-        android:horizontalSpacing="10dp"
-        android:verticalSpacing="10dp"/>
+        android:layout_margin="15dp"/>
 
 </RelativeLayout>
